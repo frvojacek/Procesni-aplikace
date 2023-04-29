@@ -1,0 +1,19 @@
+{
+  "name": "procesni-aplikace",
+  "version": "0.1.0",
+  "description": "Programovací práce, která je součástí přijímacího řízení na DVOP Webový backend na SSPŠG pro školní rok 2023/2024",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrantisekVojacek/Procesni-aplikace.git"
+  },
+  "author": "František Vojáček",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FrantisekVojacek/Procesni-aplikace/issues"
+  },
+  "homepage": "https://github.com/FrantisekVojacek/Procesni-aplikace#readme"
+}
