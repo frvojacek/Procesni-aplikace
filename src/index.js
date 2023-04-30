@@ -18,27 +18,14 @@ const user = new User()
   https://nodejs.org/api/readline.html#event-line
 */
 rl.on('line', (input) => {
-  listenCommand(input.split(' '))
+  let [token, command, ...args] = input.split(' ')
 })
 
-function listenCommand (command) {
-  switch (command[0]) {
-    case 'AUTH':
-      user.authenticate(command)
-      break
-    case process.env[user.email]:
-      switch (command[1]) {
-        case 'WHOAMI':
-          user.whoami()
-          break
-        case 'LOGOUT':
-          user.logout()
-          break
-        default:
-          console.error('SYNTAX ERROR')
-      }
-      break
-    default:
-      console.error('SYNTAX ERROR')
+const commandsList = {
+  'WHOAMI': {
+    execute: () => user.whoami()
+  },
+  'LOGOUT': {
+    execute: () => user.logout()
   }
 }
