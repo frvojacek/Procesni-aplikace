@@ -2,8 +2,10 @@
 import { User } from './authentication/User.js'
 import * as readline from 'node:readline/promises'
 
-// https://nodejs.dev/en/learn/accept-input-from-the-command-line-in-nodejs/
-// https://nodejs.org/api/readline.html#readline
+/*
+  https://nodejs.dev/en/learn/accept-input-from-the-command-line-in-nodejs/
+  https://nodejs.org/api/readline.html#readline
+*/
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -11,16 +13,13 @@ const rl = readline.createInterface({
 
 const user = new User()
 
-while (true) {
-  const command = (await rl.question('')).split(' ')
-
-  listenCommand(command)
-
-  rl.on('close', function () {
-    console.info('Closing application')
-    process.exit(0)
-  })
-}
+/*
+  https://nodejs.org/api/readline.html#rlquestionquery-options
+  https://nodejs.org/api/readline.html#event-line
+*/
+rl.on('line', (input) => {
+  listenCommand(input.split(' '))
+})
 
 function listenCommand (command) {
   switch (command[0]) {
