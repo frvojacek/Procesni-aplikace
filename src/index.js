@@ -36,6 +36,16 @@ function listenCommand (command) {
       break
     case process.env[user.email]:
       switch (command[1]) {
+        case 'WHOAMI':
+          if (user.status.checkAuthentication) {
+            console.info(user.email)
+          }
+          break
+        case 'LOGOUT':
+          if (user.status.checkAuthentication) {
+            user.logout()
+          }
+          break
         default:
           console.error('SYNTAX ERROR')
       }

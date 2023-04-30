@@ -1,16 +1,29 @@
 const { randomBytes } = await import('node:crypto')
 
 export class User {
-  isAuthenticated = false
+  // https://programiz.com/javascript/getter-setter
+  status = {
+    isAuthenticated: false,
+    get checkAuthentication () {
+      if (!this.isAuthenticated) {
+        console.error('UNAUTHENTICATED')
+      }
+      return this.isAuthenticated
+    }
+  }
 
   authenticate (email) {
     this.email = email
     if (this.validateEmail(email, 'ssps.cz')) {
       this.generateToken()
-      this.isAuthenticated = true
+      this.status.isAuthenticated = true
     } else {
       console.error('INVALID E-MAIL')
     }
+  }
+
+  logout () {
+    this.status.isAuthenticated = false
   }
 
   /*
