@@ -12,9 +12,19 @@ export class User {
     }
   }
 
-  authenticate (email) {
-    this.email = email
-    if (this.validateEmail(email, 'ssps.cz')) {
+  authenticate (command) {
+    if (command.length !== 2) {
+      console.error('SYNTAX ERROR')
+      return
+    }
+    if (this.status.isAuthenticated) {
+      console.error('ALREADY AUTHENTICATED')
+      return
+    }
+
+    this.email = command[1]
+
+    if (this.validateEmail(this.email, 'ssps.cz')) {
       this.generateToken()
       this.status.isAuthenticated = true
     } else {
@@ -23,7 +33,15 @@ export class User {
   }
 
   logout () {
-    this.status.isAuthenticated = false
+    if (this.status.checkAuthentication) {
+      this.status.isAuthenticated = false
+    }
+  }
+
+  whoami () {
+    if (this.status.checkAuthentication) {
+      console.info(this.email)
+    }
   }
 
   /*

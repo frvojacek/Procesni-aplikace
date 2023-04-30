@@ -26,25 +26,15 @@ while (true) {
 function listenCommand (command) {
   switch (command[0]) {
     case 'AUTH':
-      if (user.isAuthenticated) {
-        console.error('ALREADY AUTHENTICATED')
-      } else if (command.length === 2) {
-        user.authenticate(command[1])
-      } else {
-        console.error('SYNTAX ERROR')
-      }
+      user.authenticate(command)
       break
     case process.env[user.email]:
       switch (command[1]) {
         case 'WHOAMI':
-          if (user.status.checkAuthentication) {
-            console.info(user.email)
-          }
+          user.whoami()
           break
         case 'LOGOUT':
-          if (user.status.checkAuthentication) {
-            user.logout()
-          }
+          user.logout()
           break
         default:
           console.error('SYNTAX ERROR')
