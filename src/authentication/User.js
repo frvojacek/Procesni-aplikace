@@ -34,6 +34,7 @@ export class User {
 
   logout () {
     if (this.status.checkAuthentication) {
+      delete process.env[this.email]
       this.status.isAuthenticated = false
     }
   }

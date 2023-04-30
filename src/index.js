@@ -18,7 +18,6 @@ while (true) {
 
   rl.on('close', function () {
     console.info('Closing application')
-    delete process.env[user.email]
     process.exit(0)
   })
 }
