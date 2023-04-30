@@ -12,8 +12,8 @@ export class User {
     }
   }
 
-  authenticate (command) {
-    if (command.length !== 2) {
+  authenticate (email, ...args) {
+    if (args.length !== 0) {
       console.error('SYNTAX ERROR')
       return
     }
@@ -22,9 +22,8 @@ export class User {
       return
     }
 
-    this.email = command[1]
-
-    if (this.validateEmail(this.email, 'ssps.cz')) {
+    if (this.validateEmail(email, 'ssps.cz')) {
+      this.email = email
       this.generateToken()
       this.status.isAuthenticated = true
     } else {
@@ -33,16 +32,12 @@ export class User {
   }
 
   logout () {
-    if (this.status.checkAuthentication) {
-      delete process.env[this.email]
-      this.status.isAuthenticated = false
-    }
+    delete process.env[this.email]
+    this.status.isAuthenticated = false
   }
 
   whoami () {
-    if (this.status.checkAuthentication) {
-      console.info(this.email)
-    }
+    console.info(this.email)
   }
 
   /*
