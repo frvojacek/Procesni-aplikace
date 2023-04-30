@@ -9,7 +9,7 @@ export class User {
       this.generateToken()
       this.isAuthenticated = true
     } else {
-      console.log('INVALID EMAIL')
+      console.error('INVALID EMAIL')
     }
   }
 
@@ -41,7 +41,7 @@ export class User {
       if (error) console.error(error)
       const token = buffer.toString('hex')
       process.env[this.email] = token
-      console.log(token)
+      console.info(token)
     })
   }
 }

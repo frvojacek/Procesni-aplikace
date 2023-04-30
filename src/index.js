@@ -17,7 +17,7 @@ while (true) {
   listenCommand(command)
 
   rl.on('close', function () {
-    console.log('Closing application')
+    console.info('Closing application')
     delete process.env[user.email]
     process.exit(0)
   })
@@ -29,7 +29,7 @@ function listenCommand (command) {
       if (command.length === 2) {
         user.authenticate(command[1])
       } else {
-        console.log('SYNTAX ERROR')
+        console.error('SYNTAX ERROR')
       }
       break
   }
