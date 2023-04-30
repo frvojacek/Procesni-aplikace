@@ -1,4 +1,5 @@
 // https://nodejs.org/api/esm.html#esm_enabling
+import { User } from './authentication/User.js'
 import * as readline from 'node:readline/promises'
 
 // https://nodejs.dev/en/learn/accept-input-from-the-command-line-in-nodejs/
@@ -8,13 +9,28 @@ const rl = readline.createInterface({
   output: process.stdout
 })
 
+const user = new User()
+
 while (true) {
   const command = (await rl.question('')).split(' ')
 
-  console.log(command)
+  listenCommand(command)
 
   rl.on('close', function () {
     console.log('Application closed')
     process.exit(0)
   })
+}
+
+function listenCommand (command) {
+  switch (command[0]) {
+    case 'AUTH':
+      if (command.length === 2) {
+        user.authenticate()
+        console.log(user.isAuthenticated)
+      } else {
+        console.log('SYNTAX ERROR')
+      }
+      break
+  }
 }
