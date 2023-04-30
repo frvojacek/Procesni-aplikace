@@ -34,5 +34,7 @@ function listenCommand (command) {
         console.error('SYNTAX ERROR')
       }
       break
+    case process.env[user.email]:
+      console.info(user.isAuthenticated)
   }
 }

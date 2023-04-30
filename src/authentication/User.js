@@ -9,7 +9,7 @@ export class User {
       this.generateToken()
       this.isAuthenticated = true
     } else {
-      console.error('INVALID EMAIL')
+      console.error('INVALID E-MAIL')
     }
   }
 
