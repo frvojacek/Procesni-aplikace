@@ -18,22 +18,22 @@ const user = new User()
   https://nodejs.org/api/readline.html#event-line
 */
 rl.on('line', (input) => {
-  let [token, command, ...args] = input.split(' ')
+  const [token, command, ...args] = input.split(' ')
 
   // token and command required
   if (typeof command === 'undefined') {
     console.error('SYNTAX ERROR')
     return
   }
-  
+
   listenCommand(token, command, ...args)
 })
 
 const commandsList = {
-  'WHOAMI': {
+  WHOAMI: {
     execute: () => user.whoami()
   },
-  'LOGOUT': {
+  LOGOUT: {
     execute: () => user.logout()
   }
 }
@@ -43,7 +43,7 @@ function listenCommand (token, command, ...args) {
     user.authenticate(command, ...args)
     return
   }
-  
+
   /*
     Too many arguments need to be handled separately
     https://levelup.gitconnected.com/how-to-write-function-with-n-number-of-parameters-in-javascript-a916de1be7a2
