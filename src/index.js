@@ -35,6 +35,12 @@ function listenCommand (command) {
       }
       break
     case process.env[user.email]:
-      console.info(user.isAuthenticated)
+      switch (command[1]) {
+        default:
+          console.error('SYNTAX ERROR')
+      }
+      break
+    default:
+      console.error('SYNTAX ERROR')
   }
 }
