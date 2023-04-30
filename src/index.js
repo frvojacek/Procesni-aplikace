@@ -19,6 +19,13 @@ const user = new User()
 */
 rl.on('line', (input) => {
   let [token, command, ...args] = input.split(' ')
+
+  // token and command required
+  if (typeof command === 'undefined') {
+    console.error('SYNTAX ERROR')
+    return
+  }
+  
   listenCommand(token, command, ...args)
 })
 
