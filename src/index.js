@@ -26,7 +26,9 @@ while (true) {
 function listenCommand (command) {
   switch (command[0]) {
     case 'AUTH':
-      if (command.length === 2) {
+      if (user.isAuthenticated) {
+        console.error('ALREADY AUTHENTICATED')
+      } else if (command.length === 2) {
         user.authenticate(command[1])
       } else {
         console.error('SYNTAX ERROR')
