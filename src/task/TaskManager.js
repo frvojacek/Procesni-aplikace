@@ -1,8 +1,3 @@
-import { RectangleArea } from './RectangleArea.js'
-import { RectanglePerimeter } from './RectanglePerimeter.js'
-import { CircleArea } from './CircleArea.js'
-import { CirclePerimeter } from './CirclePerimeter.js'
-
 // Methods are static, no need for multiple instances of a Manager
 export class TaskManager {
   /*
@@ -17,38 +12,7 @@ export class TaskManager {
     console.info(`${this.#queue.length} / ${this.#processed.length} tasks to be processed / were processed from start.`)
   }
 
-  static add (type, data) {
-    let task
-    switch (type) {
-      case 'RECTANGLE-AREA':
-        if (!RectangleArea.validateSyntax(data)) {
-          console.error('SYNTAX ERROR')
-          return
-        }
-        task = new RectangleArea(data)
-        break
-      case 'RECTANGLE-PERIMETER':
-        if (!RectanglePerimeter.validateSyntax(data)) {
-          console.error('SYNTAX ERROR')
-          return
-        }
-        task = new RectanglePerimeter(data)
-        break
-      case 'CIRCLE-AREA':
-        if (!CircleArea.validateSyntax(data)) {
-          console.error('SYNTAX ERROR')
-          return
-        }
-        task = new CircleArea(data)
-        break
-      case 'CIRCLE-PERIMETER':
-        if (!CircleArea.validateSyntax(data)) {
-          console.error('SYNTAX ERROR')
-          return
-        }
-        task = new CirclePerimeter(data)
-        break
-    }
+  static add (task) {
     this.#queue.push(task)
     console.info(task.id)
   }

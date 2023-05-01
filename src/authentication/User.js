@@ -4,7 +4,7 @@ export class User {
   authenticate (email, ...args) {
     if (args.length !== 0) {
       console.error('SYNTAX ERROR')
-      return false
+      return
     }
 
     if (this.validateEmail(email, 'ssps.cz')) {
