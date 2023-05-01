@@ -21,15 +21,31 @@ export class TaskManager {
     let task
     switch (type) {
       case 'RECTANGLE-AREA':
+        if (!RectangleArea.validateSyntax(data)) {
+          console.error('SYNTAX ERROR')
+          return
+        }
         task = new RectangleArea(data)
         break
       case 'RECTANGLE-PERIMETER':
+        if (!RectanglePerimeter.validateSyntax(data)) {
+          console.error('SYNTAX ERROR')
+          return
+        }
         task = new RectanglePerimeter(data)
         break
       case 'CIRCLE-AREA':
+        if (!CircleArea.validateSyntax(data)) {
+          console.error('SYNTAX ERROR')
+          return
+        }
         task = new CircleArea(data)
         break
       case 'CIRCLE-PERIMETER':
+        if (!CircleArea.validateSyntax(data)) {
+          console.error('SYNTAX ERROR')
+          return
+        }
         task = new CirclePerimeter(data)
         break
     }
@@ -42,10 +58,10 @@ export class TaskManager {
       console.error('NO TASK IN QUEUE')
       return
     }
-    const object = this.#queue[0]
-    object.result = object.process()
-    console.info(object.result)
+    const task = this.#queue[0]
+    task.result = task.process()
+    console.info(`TASK #${task.id} COMPLETED, RESULT: ${task.result}`)
     this.#queue.shift()
-    this.#processed.push(object)
+    this.#processed.push(task)
   }
 }

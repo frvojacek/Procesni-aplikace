@@ -43,7 +43,6 @@ const commandsList = {
   ADD: {
     execute: (type, data) => TaskManager.add(type, data)
   },
-  // Only check single argument and delegate to commands
   PROCESS: {
     execute: () => TaskManager.process()
   }
