@@ -1,9 +1,8 @@
 // https://nodejs.org/api/esm.html#esm_enabling
 import * as readline from 'node:readline'
-import { User } from 'authentication/User.js'
-import { TaskManager } from 'task/TaskManager.js'
+import { User } from './authentication/User.js'
+import { TaskManager } from './task/TaskManager.js'
 
-const taskManager = new TaskManager()
 const user = new User()
 
 /*
@@ -28,7 +27,7 @@ rl.on('line', (input) => {
     return
   }
 
-  listenCommand(token, command, ...args)
+  listenCommand(commandsList, token, command, ...args)
 })
 
 const commandsList = {
@@ -39,28 +38,29 @@ const commandsList = {
     execute: () => user.logout()
   },
   STATUS: {
-    execute: () => taskManager.status()
+    execute: () => TaskManager.status()
   },
   ADD: {
-    execute: (type, data) => taskManager.add(type, data)
+    execute: (type, data) => TaskManager.add(type, data)
   },
+  // Only check single argument and delegate to commands
   PROCESS: {
-    execute: () => taskManager.process()
+    execute: () => TaskManager.process()
   }
 }
 
-function listenCommand (token, command, ...args) {
+export function listenCommand (commandsList, token, command, ...args) {
   if (token === 'AUTH') {
     user.authenticate(command, ...args)
     return
   }
 
   /*
-    Too many arguments need to be handled separately
     https://levelup.gitconnected.com/how-to-write-function-with-n-number-of-parameters-in-javascript-a916de1be7a2
     https://stackoverflow.com/questions/13020532/amount-of-passed-parameters-to-functions-in-javascript
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+    Too many arguments SYNTAX ERROR
     undefined command also outputs SYNTAX ERROR thanks to optional chaining operator
   */
   command = commandsList[command]
@@ -73,5 +73,5 @@ function listenCommand (token, command, ...args) {
     return
   }
 
-  command.execute()
+  command.execute(...args)
 }
