@@ -4,7 +4,7 @@ export class User {
   authenticate (email, ...args) {
     if (args.length !== 0) {
       console.error('SYNTAX ERROR')
-      return
+      return false
     }
 
     if (this.validateEmail(email, 'ssps.cz')) {
@@ -12,6 +12,7 @@ export class User {
       this.generateToken()
     } else {
       console.error('INVALID E-MAIL')
+      return false
     }
   }
 
@@ -36,7 +37,6 @@ export class User {
     if (typeof domain !== 'undefined') {
       isValid = email.endsWith(`@${domain}`)
     }
-
     return isValid
   }
 
@@ -49,7 +49,7 @@ export class User {
   generateToken () {
     randomBytes(10, (error, buffer) => {
       if (error) console.error(error)
-      const token = buffer.toString('hex')
+      const token = buffer.toString('hex').toUpperCase()
       process.env[this.email] = token
       console.info(token)
     })
