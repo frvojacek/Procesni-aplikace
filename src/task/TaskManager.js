@@ -11,6 +11,7 @@ export class TaskManager {
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields
   */
   static #queue = []
+  static #processed = []
 
   static status () {
 
@@ -36,7 +37,11 @@ export class TaskManager {
     console.info(task.id)
   }
 
-  process () {
-
+  static process () {
+    const object = this.#queue[0]
+    object.result = object.process()
+    console.info(object.result)
+    this.#queue.shift()
+    this.#processed.push(object)
   }
 }
