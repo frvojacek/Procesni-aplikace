@@ -1,6 +1,10 @@
 // https://nodejs.org/api/esm.html#esm_enabling
-import { User } from './authentication/User.js'
-import * as readline from 'node:readline/promises'
+import * as readline from 'node:readline'
+import { User } from 'authentication/User.js'
+import { TaskManager } from 'task/TaskManager.js'
+
+const taskManager = new TaskManager()
+const user = new User()
 
 /*
   https://nodejs.dev/en/learn/accept-input-from-the-command-line-in-nodejs/
@@ -10,8 +14,6 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 })
-
-const user = new User()
 
 /*
   https://nodejs.org/api/readline.html#rlquestionquery-options
@@ -35,6 +37,15 @@ const commandsList = {
   },
   LOGOUT: {
     execute: () => user.logout()
+  },
+  STATUS: {
+    execute: () => taskManager.status()
+  },
+  ADD: {
+    execute: (type, data) => taskManager.add(type, data)
+  },
+  PROCESS: {
+    execute: () => taskManager.process()
   }
 }
 
