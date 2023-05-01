@@ -14,7 +14,7 @@ export class TaskManager {
   static #processed = []
 
   static status () {
-
+    console.info(`${this.#queue.length} / ${this.#processed.length} tasks to be processed / were processed from start.`)
   }
 
   static add (type, data) {
