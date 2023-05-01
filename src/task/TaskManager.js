@@ -38,6 +38,10 @@ export class TaskManager {
   }
 
   static process () {
+    if (this.#queue.length === 0) {
+      console.error('NO TASK IN QUEUE')
+      return
+    }
     const object = this.#queue[0]
     object.result = object.process()
     console.info(object.result)
