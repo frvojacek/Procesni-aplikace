@@ -1,48 +1,26 @@
 const { randomBytes } = await import('node:crypto')
 
 export class User {
-  // https://programiz.com/javascript/getter-setter
-  status = {
-    isAuthenticated: false,
-    get checkAuthentication () {
-      if (!this.isAuthenticated) {
-        console.error('UNAUTHENTICATED')
-      }
-      return this.isAuthenticated
-    }
-  }
-
-  authenticate (command) {
-    if (command.length !== 2) {
+  authenticate (email, ...args) {
+    if (args.length !== 0) {
       console.error('SYNTAX ERROR')
       return
     }
-    if (this.status.isAuthenticated) {
-      console.error('ALREADY AUTHENTICATED')
-      return
-    }
 
-    this.email = command[1]
-
-    if (this.validateEmail(this.email, 'ssps.cz')) {
+    if (this.validateEmail(email, 'ssps.cz')) {
+      this.email = email
       this.generateToken()
-      this.status.isAuthenticated = true
     } else {
       console.error('INVALID E-MAIL')
     }
   }
 
   logout () {
-    if (this.status.checkAuthentication) {
-      delete process.env[this.email]
-      this.status.isAuthenticated = false
-    }
+    delete process.env[this.email]
   }
 
   whoami () {
-    if (this.status.checkAuthentication) {
-      console.info(this.email)
-    }
+    console.info(this.email)
   }
 
   /*
