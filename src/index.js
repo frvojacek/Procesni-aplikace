@@ -2,9 +2,6 @@
 import * as readline from 'node:readline'
 import { CommandManager } from './command/CommandManager.js'
 import { commandsList } from './command/commandsList.js'
-import { User } from './authentication/User.js'
-
-export const user = new User()
 
 /*
   https://nodejs.dev/en/learn/accept-input-from-the-command-line-in-nodejs/

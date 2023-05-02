@@ -1,7 +1,9 @@
-import { user } from '../index.js'
+import { UserManager } from '../authentication/UserManager.js'
 
 // Methods are static, no need for multiple instances of a Manager
 export class CommandManager {
+  static authorToken
+
   static listenCommand (commandsList, token, ...commands) {
     // token and command required
     if (commands.length === 0) {
@@ -9,7 +11,7 @@ export class CommandManager {
       return false
     }
     if (token === 'AUTH') {
-      user.authenticate(...commands)
+      UserManager.authenticate(...commands)
       return true
     }
 
@@ -32,13 +34,15 @@ export class CommandManager {
           return false
         }
         // Authentication check
-        if (token !== process.env[user.email]) {
+        if (typeof process.env[token] === 'undefined') {
           console.error('UNAUTHENTICATED')
           return false
         }
         // Successfull completion
         // https://stackoverflow.com/questions/6473858/how-do-i-get-the-last-5-elements-excluding-the-first-element-from-an-array
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+
+        this.authorToken = token
         commandInList[command].execute(...commands.slice(count - commands.length + 1)) // Argument is remaining
         return true
       }
