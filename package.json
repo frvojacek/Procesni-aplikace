@@ -1,6 +1,6 @@
 {
   "name": "procesni-aplikace",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Programovací práce, která je součástí přijímacího řízení na DVOP Webový backend na SSPŠG pro školní rok 2023/2024",
   "type": "module",
   "main": "src/index.js",
