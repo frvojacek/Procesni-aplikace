@@ -41,7 +41,7 @@ export class CommandManager {
         // Successfull completion
         // https://stackoverflow.com/questions/6473858/how-do-i-get-the-last-5-elements-excluding-the-first-element-from-an-array
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
-        
+
         this.authorToken = token
         commandInList[command].execute(...commands.slice(count - commands.length + 1)) // Argument is remaining
         return true

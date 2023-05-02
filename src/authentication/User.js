@@ -1,5 +1,5 @@
 export class User {
-  constructor(email) {
+  constructor (email) {
     this.email = email
   }
 }
