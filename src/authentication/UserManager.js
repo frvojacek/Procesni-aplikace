@@ -14,6 +14,7 @@ export class UserManager {
       const token = this.generateToken()
       process.env[token] = email
       console.info(token)
+      return user
     } else {
       console.error('INVALID E-MAIL')
       return false
