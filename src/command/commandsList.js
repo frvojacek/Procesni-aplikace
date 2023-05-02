@@ -1,4 +1,4 @@
-import { user } from '../index.js'
+import { UserManager } from '../authentication/UserManager.js'
 import { TaskManager } from '../task/TaskManager.js'
 import { RectangleArea } from '../task/RectangleArea.js'
 import { RectanglePerimeter } from '../task/RectanglePerimeter.js'
@@ -7,10 +7,10 @@ import { CirclePerimeter } from '../task/CirclePerimeter.js'
 
 export const commandsList = {
   WHOAMI: {
-    execute: () => user.whoami()
+    execute: () => UserManager.whoami()
   },
   LOGOUT: {
-    execute: () => user.logout()
+    execute: () => UserManager.logout()
   },
   STATUS: {
     execute: () => TaskManager.status()
