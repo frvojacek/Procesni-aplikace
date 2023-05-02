@@ -10,7 +10,7 @@ export class CirclePerimeter extends Task {
 
   process () {
     const radius = this.data
-    const perimeter = 2 * Math.PI * radius
+    const perimeter = 2 * 3.14 * radius
     return Math.ceil(perimeter)
   }
 }

@@ -10,7 +10,7 @@ export class CircleArea extends Task {
 
   process () {
     const radius = this.data
-    const area = Math.PI * Math.pow(radius, 2)
+    const area = 3.14 * Math.pow(radius, 2)
     return Math.ceil(area)
   }
 }
