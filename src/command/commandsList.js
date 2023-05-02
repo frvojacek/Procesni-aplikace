@@ -22,7 +22,8 @@ export const commandsList = {
           console.error('SYNTAX ERROR')
           return false
         }
-        new RectangleArea(data)
+        // https://stackoverflow.com/questions/33287045/eslint-suppress-do-not-use-new-for-side-effects
+        TaskManager.add(new RectangleArea(data))
       }
     },
     'RECTANGLE-PERIMETER': {
@@ -31,7 +32,8 @@ export const commandsList = {
           console.error('SYNTAX ERROR')
           return false
         }
-        new RectanglePerimeter(data)
+        // https://stackoverflow.com/questions/33287045/eslint-suppress-do-not-use-new-for-side-effects
+        TaskManager.add(new RectanglePerimeter(data))
       }
     },
     'CIRCLE-AREA': {
@@ -40,7 +42,8 @@ export const commandsList = {
           console.error('SYNTAX ERROR')
           return false
         }
-        new CircleArea(data)
+        // https://stackoverflow.com/questions/33287045/eslint-suppress-do-not-use-new-for-side-effects
+        TaskManager.add(new CircleArea(data))
       }
     },
     'CIRCLE-PERIMETER': {
@@ -49,7 +52,8 @@ export const commandsList = {
           console.error('SYNTAX ERROR')
           return false
         }
-        new CirclePerimeter(data)
+        // https://stackoverflow.com/questions/33287045/eslint-suppress-do-not-use-new-for-side-effects
+        TaskManager.add(new CirclePerimeter(data))
       }
     }
   },
